@@ -1,0 +1,231 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku Solver</title>
+
+
+    <style>
+        
+        .wrapper {
+            text-align: center;
+            margin-top: 5%;
+        }
+        
+        fieldset {
+                border: none;
+        }
+        
+        table {
+           margin-left: auto;
+           margin-right: auto; 
+           border-collapse: collapse;
+           border: 4px black solid;
+        }
+        td {
+            padding: 10px;
+            border: 1px black solid;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        td.right {
+            border-right: 4px black solid;
+        }
+
+        table tr:nth-child(3n) {
+            border-bottom: 4px black solid;
+        }        
+        
+        input[type=range] {
+                width: 100%;
+        }
+        
+        
+        #timer {
+                margin: auto;
+                width: 400px;
+        }
+        
+        #values {
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+        }
+        
+        h5 {
+                margin: 0;
+                margin-top: 10px;
+        }
+        
+        #warning {
+                color: red;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Recursive sudoku solver</h1>
+        <h4 id="status">Awaiting results...</h4>
+            <table>
+                    <tr>
+                            <td>4</td>
+                            <td>6</td>
+                            <td class="right"></td> 
+                            
+                            <td></td>
+                            <td></td>
+                            <td class="right"></td> 
+                            
+                            <td></td>
+                            <td></td>
+                            <td>2</td> 
+                    </tr>
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="right">3</td> 
+
+                            <td>7</td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td></td>
+                            <td></td>
+                            <td></td> 
+                    </tr>                    
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td></td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td>1</td>
+                            <td>8</td>
+                            <td></td> 
+                    </tr>
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="right">2</td> 
+
+                            <td></td>
+                            <td></td>
+                            <td class="right">3</td> 
+
+
+                            <td></td>
+                            <td></td>
+                            <td></td> 
+                    </tr>
+
+                    <tr>
+                            <td></td>
+                            <td>8</td>
+                            <td class="right"></td> 
+
+                            <td></td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td>5</td>
+                            <td>1</td>
+                            <td></td> 
+                    </tr>                    
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td>6</td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td></td>
+                            <td></td>
+                            <td>9</td> 
+                    </tr>
+
+
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="right">4</td> 
+
+                            <td></td>
+                            <td>1</td>
+                            <td class="right"></td> 
+
+                            <td></td>
+                            <td></td>
+                            <td></td> 
+                    </tr>
+                    <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="right"></td> 
+
+                            <td></td>
+                            <td></td>
+                            <td class="right">8</td> 
+
+                            <td>4</td>
+                            <td>6</td>
+                            <td>1</td> 
+                    </tr>                
+                    <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td class="right"></td> 
+                            
+                            <td></td>
+                            <td></td>
+                            <td class="right">7</td> 
+                            
+                            <td></td>
+                            <td></td>
+                            <td></td> 
+                    </tr>
+                    
+            </table>
+            <div id ="timer">
+                    <h5>Time between moves (ms)</h5><span id="warning">Disabled until all snapshots have been received</span>
+                    <div id="values">
+                        <span>0</span>    
+                        <span>1000</span>                   
+                    </div>
+                
+                <input id="slider" type="range" min="0" max="1000" step="100" onchange="updateTimer(this.value);" list="options" disabled/>
+            </div>
+             <label for="">Go to step: </label><input type="number" min="0" id="step" disabled>
+             <button id="button" disabled onclick="goto()">Go</button>             
+
+
+
+
+            <datalist id="options">
+                    <option>0</option>
+                    <option>100</option>
+                    <option>200</option>
+                    <option>300</option>
+                    <option>400</option>
+                    <option>500</option>
+                    <option>600</option>
+                    <option>700</option>
+                    <option>800</option>
+                    <option>900</option>
+                    <option>1000</option>
+            </datalist>
+                    
+    </div>
+<script src="worker.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
